@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.io.File;
 import java.io.IOException;
 
 public class Sample4 extends SettingsDriver {
@@ -20,9 +21,10 @@ public class Sample4 extends SettingsDriver {
 
         try {
             Process exec = Runtime.getRuntime().exec(wgetCommand);
-            int exitVal = exec.waitFor();
-            System.out.println("Exit value: " + exitVal);
-            Assert.assertEquals(exitVal,0);
+            exec.waitFor();
+            File file = new File("/home/ivan/Загрузки/wget/msgr11us.exe");
+            Assert.assertTrue(file.exists());
+            file.delete();
         } catch (IOException exception) {
             exception.printStackTrace();
         } catch (InterruptedException e) {
